@@ -13,7 +13,7 @@ The analysis is performed as follows:
 3. Exploratory Analysis: generate and save plots to present associations between variables, performed by `Code/figures.R`.
 
 4. Model fitting: fit a logistic regression model to explore the associations between heart disease status and other risk
-factors, summarize and save the model results, performed by `Code/model.R`.
+factors, summarize and save the model results in a table, performed by `Code/model.R`.
 
 ---
 
