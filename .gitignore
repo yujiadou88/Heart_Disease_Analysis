@@ -1,0 +1,5 @@
+Data/data_hd_cleaned.csv
+output/*.csv
+*.html
+*.pdf
+*.docx

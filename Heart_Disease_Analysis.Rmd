@@ -1,0 +1,109 @@
+---
+title: "Heart Disease Analysis"
+author: "Yujia Dou"
+output:
+  html_document: 
+    toc: true
+    toc_float: true  
+    number_sections: true  
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Introduction
+
+Heart disease remains one of the leading causes of mortality worldwide. The Heart Disease Dataset, which is available on [Kaggle](https://www.kaggle.com/datasets/oktayrdeki/heart-disease), contains various health indicators as well as risk factors of 10,000 participants. The data includes demographic information, lifestyle habits, and multiple medical measurements that potentially contribute to heart disease risk. The objective of this analysis is to explore patterns in the dataset, identify relationships between risk factors and heart disease status, and finally build a prediction model of heart disease status with those risk factors.
+
+
+```{r load_lib, message=FALSE, warning=FALSE}
+library(readr)
+library(here)
+library(table1)
+```
+
+# Data cleaning
+Rows with missing values were removed. The remaining data of 9,500 participants were included for the following analyses.
+
+# Descriptive and Exploratory Data Analysis
+
+## Descriptive Statistics
+
+Below is the table describing the summary statistics of selected variables.
+
+```{r summary_table}
+# read in cleaned data
+data_hd_cleaned <- read.csv(here::here("Data","data_hd_cleaned.csv"),
+                            check.names = FALSE)
+
+# factorize variables
+data_hd_cleaned$`Heart Disease Status` <- 
+  factor(data_hd_cleaned$`Heart Disease Status`,
+         levels = c("No","Yes"),
+         labels = c("No Heart Disease", "Heart Disease"))
+
+data_hd_cleaned$`Exercise Habits` <- 
+  factor(data_hd_cleaned$`Exercise Habits`, levels = c("Low", "Medium", "High"))
+
+data_hd_cleaned$`Alcohol Consumption` <- 
+  factor(data_hd_cleaned$`Alcohol Consumption`, levels = c("None","Low", "Medium", "High"))
+
+data_hd_cleaned$`Sugar Consumption` <- 
+  factor(data_hd_cleaned$`Sugar Consumption`, levels = c("Low", "Medium", "High"))
+
+data_hd_cleaned$`Stress Level` <- 
+  factor(data_hd_cleaned$`Stress Level`, levels = c("Low", "Medium", "High"))
+
+
+# Create table
+tb1 <- table1(~ Age + Gender + `Exercise Habits` + Smoking + 
+                `Alcohol Consumption` + `Sugar Consumption` + `Stress Level` + 
+                `Sleep Hours` + `Family Heart Disease` + `Blood Pressure` + 
+                `Cholesterol Level` + `Heart Disease Status`, 
+              data = data_hd_cleaned)
+
+tb1
+
+```
+
+The table provides an overview of the demographics and clinical characteristics of the study population. There are a total of 9,500 participants included in the analysis with a mean age of 49.3 years (SD = 18.2), reflecting a predominantly middle-aged to older demographic. The gender distribution in the dataset appears to be balanced, with an approximately half-half split between males and females.
+
+## Data Visualization
+
+### Heart Disease Status by Stress Level 
+
+The following bar plot presents the percentage of heart disease among populations with different stress levels.
+
+```{r gender_plot}
+knitr::include_graphics(here::here("output","stress_level_plot.png"))
+```
+
+
+According to the plot, participants with medium stress level have slightly higher probability of heart disease compared to the other two populations.
+
+### Cholesterol Levels by Heart Disease Status
+
+The following boxplot presents the distribution of cholesterol levels in individuals with and without heart disease.
+
+```{r cholesterol_plot}
+knitr::include_graphics(here::here("output","cholesterol_level_plot.png"))
+```
+
+The figure shows that the difference in the distribution of cholesterol levels between the patients with and without heart Disease is not evident.
+
+# Model Fitting
+
+A binomial logistic regression model was fit with heart disease status as the outcome and all risk factors as predicors. To simplify the model, backward selection based on AIC was used to remove less informative variables.
+
+The model results, including estimated coefficients, odds ratios, associated confidence intervals, and p-values, were summarized in the following table.
+
+```{r model}
+# Read in the results table
+results_table <- read.csv(here::here("output","model_results.csv"), row.names = 1, check.names = FALSE)
+
+# Display the table
+knitr::kable(results_table, caption = "Logistic Regression Results")
+```
+Gender male, blood pressure, and low stress level were found to be negatively associated with the risk of heart disease. Medium stress level was associated with increased risk of heart disearse. However, none of these associations were statistically significant.
