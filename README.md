@@ -10,7 +10,7 @@ The analysis is performed as follows:
 
 2. Descriptive Analysis: generate a table 1 for describing the population, performed by `Heart_Disease_Analysis.Rmd`.
 
-3. Exploratory Analysis: generate and save plots to present associations between variables, performed by `code/figures.R`.
+3. Exploratory Analysis: generate and save plots to present associations between variables, performed by `Code/figures.R`.
 
 4. Model fitting: fit a logistic regression model to explore the associations between heart disease status and other risk
 factors, summarize and save the model results, performed by `Code/model.R`.
@@ -31,7 +31,7 @@ factors, summarize and save the model results, performed by `Code/model.R`.
 │   ├── heart_disease.csv           # Raw input dataset 
 |   ├── data_hd_cleanded.csv        # Cleanded dataset
 │
-├── output/
+├── Output/
 │   ├── model_results.csv           # Summary table of final logistic model
 │   ├── stress_level_plot.png       # Bar plot of stress level by heart disease status
 │   ├── cholesterol_level_plot.png  # Boxplot of cholesterol by heart disease status
