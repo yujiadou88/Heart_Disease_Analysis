@@ -46,13 +46,27 @@ factors, summarize and save the model results in a table, performed by `Code/mod
 
 ## Instructions for creating the report from terminal
 
+### Restoring the package environment
+
+To install the required packages, run the following rule in the terminal:
+
+```bash
+make install
+```
+
+Or equivalently, runs it manually in R
+
+```R
+renv::restore()
+```
+
 ### Option 1: Use `make`
 
 ```bash
 make
 ```
 
-### Option 2: Run each step manually
+### Option 2: Run each code manually
 
 ```bash
 Rscript Code/clean_data.R

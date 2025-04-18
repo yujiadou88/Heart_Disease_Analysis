@@ -14,8 +14,11 @@ report:
 	Rscript Code/render_report.R
 
 
+
 .PHONY: clean
 clean:
 	rm -f Data/data_hd_cleaned.csv output/*.csv output/*.png *.html *.pdf *.docx
 
+install:
+	Rscript -e 'renv::restore()'
 
