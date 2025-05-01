@@ -41,4 +41,4 @@ results_table <- cbind(
 
 results_table <- round(results_table, 3)
 
-write.csv(results_table, here("output/model_results.csv"), row.names = TRUE)
+write.csv(results_table, here("Output/model_results.csv"), row.names = TRUE)

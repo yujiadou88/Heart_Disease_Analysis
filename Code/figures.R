@@ -15,7 +15,7 @@ fig1 <- ggplot(data_hd_cleaned, aes(x = `Stress Level`, fill = `Heart Disease St
        y = "%") +
   theme_minimal()
 
-ggsave(filename = here::here("output", "stress_level_plot.png"), plot = fig1, width = 6, height = 4)
+ggsave(filename = here::here("Output", "stress_level_plot.png"), plot = fig1, width = 6, height = 4)
 
 # Plot:Cholesterol Level by Heart Disease Stauts
 fig2 <- ggplot(data_hd_cleaned, aes(x = `Heart Disease Status`, y = `Cholesterol Level`, fill = `Heart Disease Status`)) +
@@ -25,4 +25,4 @@ fig2 <- ggplot(data_hd_cleaned, aes(x = `Heart Disease Status`, y = `Cholesterol
        y = "Cholesterol Level") +
   theme_minimal()
 
-ggsave(filename = here::here("output", "cholesterol_level_plot.png"), plot = fig2, width = 6, height = 4)
+ggsave(filename = here::here("Output", "cholesterol_level_plot.png"), plot = fig2, width = 6, height = 4)

@@ -4,7 +4,7 @@ library(here)
 library(dplyr)
 
 # Load the dataset
-#here::i_am("Code/clean_data.R")
+here::i_am("Code/clean_data.R")
 data_hd <- read_csv(here::here("Data","heart_disease.csv"))
 
 # Clean the dataset
@@ -15,5 +15,4 @@ write.csv(
   here::here("Data","data_hd_cleaned.csv"),
   row.names = FALSE
 )
-
 

@@ -75,4 +75,32 @@ Rscript Code/figures.R
 Rscript Code/render_report.R
 ```
 
+## Instructions for creating the report with Docker
+
+This project report can bu run inside a Docker container.
+
+### Build the Docker image
+
+To build the Docker image  (publicly found on [https://hub.docker.com/repository/docker/yujiadou88/hd_image](https://hub.docker.com/repository/docker/yujiadou88/hd_image)), run this in the project root directory:
+
+```bash
+make build_image
+```
+
+### Render report using Docker
+
+To generate the report, which can be eventually found in the `final_project` folder, depending on which operating system you are using:
+
+For macOS/Linux users, run:
+
+```bash
+make docker_report
+```
+
+For Windows users, run:
+
+```bash
+make docker_report_win
+```
+
 ---

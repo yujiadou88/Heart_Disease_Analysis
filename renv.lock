@@ -197,7 +197,7 @@
       "VignetteBuilder": "knitr, rmarkdown",
       "RoxygenNote": "7.2.0",
       "NeedsCompilation": "yes",
-      "Repository": "CRAN"
+      "Repository": "RSPM"
     },
     "bit64": {
       "Package": "bit64",
